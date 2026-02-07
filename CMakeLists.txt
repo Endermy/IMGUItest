@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.29)
-project(WhatToEat)
+project(SDLtest)
 set(CXX_STANDARD 23)
-set(ac set;sdf)
-message(${ac})
 include_directories(include/imgui)
 include_directories(include/imgui/backends)
 include_directories(include/SDL3)
@@ -11,9 +9,10 @@ aux_source_directory(. a)
 aux_source_directory(include/imgui a)
 # aux_source_directory(include/imgui/backends a)
 # file(GLOB a include/imgui/backends/imgui_impl_opengl3_loader.h)
-set(b 
-D:/VSworkspace/imguiTest/include/imgui/backends/imgui_impl_sdl3.cpp
-D:/VSworkspace/imguiTest/include/imgui/backends/imgui_impl_opengl3.cpp
+set(IMGUI_BACKEND_DIR ${CMAKE_SOURCE_DIR}/include/imgui/backends)
+set(b
+    ${IMGUI_BACKEND_DIR}/imgui_impl_sdl3.cpp
+    ${IMGUI_BACKEND_DIR}/imgui_impl_opengl3.cpp
 )
 aux_source_directory(include/SDL3 a)
 message("buildfile:" ${a})
@@ -21,3 +20,4 @@ link_directories(lib)
 link_directories(SDL3::SDL3)
 add_executable(SDLtest ${a} ${b})
 target_link_libraries(SDLtest libSDL3.dll.a opengl32)
+file(COPY SDL3.dll DESTINATION /)

@@ -44,21 +44,20 @@ int main(int, char **)
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
-
+    
     ImGui::StyleColorsDark();
-
+    
     ImGuiStyle &style = ImGui::GetStyle();
     style.ScaleAllSizes(main_scale);
     style.FontScaleDpi = main_scale;
-
+    
     ImGui_ImplSDL3_InitForOpenGL(window, gl_context);
     ImGui_ImplOpenGL3_Init("#version 130");
-
+    
+    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    bool done = false;
     bool show_demo_window = true;
     bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
-    bool done = false;
 
     while (!done)
     {
@@ -82,7 +81,6 @@ int main(int, char **)
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL3_NewFrame();
         ImGui::NewFrame();
-
         {
             static float f = 0.0f;
             static int counter = 0;
@@ -102,7 +100,6 @@ int main(int, char **)
             ImGui::Text("Button");
             ImGui::SameLine();
             ImGui::Text("counter = %d", counter);
-            ImGui::
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
             ImGui::End();
         }
